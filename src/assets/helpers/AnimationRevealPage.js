@@ -49,7 +49,7 @@ function AnimatedSlideInComponent({
           x: inView && 0,
         },
       }}
-      transition={{ type: "spring", damping: 19 }}
+      transition={{ type: "spring", damping: 25 }}
       ref={ref}
     >
       {children}

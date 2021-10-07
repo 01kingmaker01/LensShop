@@ -4,10 +4,10 @@ import styled from "styled-components";
 import { css } from "styled-components/macro"; //eslint-disable-line
 import { PrimaryButton as PrimaryButtonBase } from "components/misc/Buttons.js";
 
-import LogoImage from "svgs/logo.svg";
-import { ReactComponent as FacebookIcon } from "svgs/facebook-icon.svg";
-import { ReactComponent as TwitterIcon } from "svgs/twitter-icon.svg";
-import { ReactComponent as YoutubeIcon } from "svgs/youtube-icon.svg";
+import LogoImage from "assets/svgs/logo.svg";
+import { ReactComponent as FacebookIcon } from "assets/svgs/facebook-icon.svg";
+import { ReactComponent as TwitterIcon } from "assets/svgs/twitter-icon.svg";
+import { ReactComponent as YoutubeIcon } from "assets/svgs/youtube-icon.svg";
 
 const Container = tw.div`relative bg-gray-200 text-gray-700 -mb-8 -mx-8 px-8 py-20 lg:py-24`;
 const Content = tw.div`max-w-screen-xl mx-auto relative z-10`;

@@ -7,8 +7,8 @@ import {
   Subheading as SubheadingBase,
 } from "components/misc/Headings.js";
 import { PrimaryButton as PrimaryButtonBase } from "components/misc/Buttons.js";
-import StatsIllustrationSrc from "svgs/stats-illustration.svg";
-import { ReactComponent as SvgDotPattern } from "svgs/dot-pattern.svg";
+import StatsIllustrationSrc from "assets/svgs/stats-illustration.svg";
+import { ReactComponent as SvgDotPattern } from "assets/svgs/dot-pattern.svg";
 
 const Container = tw.div`relative`;
 const TwoColumn = tw.div`flex flex-col md:flex-row justify-between max-w-screen-xl mx-auto py-20 md:py-24`;

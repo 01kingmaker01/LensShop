@@ -7,8 +7,8 @@ import {
   SectionHeading as Heading,
   Subheading as SubheadingBase,
 } from "components/misc/Headings.js";
-import { ReactComponent as SvgDecoratorBlob1 } from "svgs/svg-decorator-blob-7.svg";
-import { ReactComponent as SvgDecoratorBlob2 } from "svgs/svg-decorator-blob-8.svg";
+import { ReactComponent as SvgDecoratorBlob1 } from "assets/svgs/svg-decorator-blob-7.svg";
+import { ReactComponent as SvgDecoratorBlob2 } from "assets/svgs/svg-decorator-blob-8.svg";
 
 const Subheading = tw(SubheadingBase)`text-center`;
 const Testimonials = tw.div`flex flex-col lg:flex-row items-center lg:items-stretch`;

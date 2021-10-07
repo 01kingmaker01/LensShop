@@ -6,14 +6,14 @@ import { css } from "styled-components/macro";
 
 import Header from "./headers/light.js";
 
-import ReactModalAdapter from "helpers/ReactModalAdapter.js";
-import ResponsiveVideoEmbed from "helpers/ResponsiveVideoEmbed.js";
+import ReactModalAdapter from "assets/helpers/ReactModalAdapter.js";
+import ResponsiveVideoEmbed from "assets/helpers/ResponsiveVideoEmbed.js";
 
-import { ReactComponent as PlayIcon } from "svgs/play-circle.svg";
-import { ReactComponent as CloseIcon } from "svgs/x.svg";
-import { ReactComponent as SvgDecoratorBlob1 } from "svgs/svg-decorator-blob-1.svg";
-import { ReactComponent as SvgDecoratorBlob2 } from "svgs/dot-pattern.svg";
-import DesignIllustration from "svgs/design-illustration.svg";
+import { ReactComponent as PlayIcon } from "assets/svgs/play-circle.svg";
+import { ReactComponent as CloseIcon } from "assets/svgs/x.svg";
+import { ReactComponent as SvgDecoratorBlob1 } from "assets/svgs/svg-decorator-blob-1.svg";
+import { ReactComponent as SvgDecoratorBlob2 } from "assets/svgs/dot-pattern.svg";
+import DesignIllustration from "assets/svgs/design-illustration.svg";
 
 const Container = tw.div`relative`;
 const TwoColumn = tw.div`flex flex-col lg:flex-row md:items-center max-w-screen-xl mx-auto py-20 md:py-24`;

@@ -1,7 +1,7 @@
 import React from "react";
 import tw from "twin.macro";
 import { css } from "styled-components/macro"; //eslint-disable-line
-import AnimationRevealPage from "helpers/AnimationRevealPage.js";
+import AnimationRevealPage from "assets/helpers/AnimationRevealPage.js";
 import Hero from "components/TwoColumnWithVideo.js";
 import Features from "components/ThreeColSimple.js";
 import MainFeature from "components/TwoColWithButton.js";
@@ -10,9 +10,9 @@ import TabGrid from "components/TabCardGrid.js";
 import Testimonial from "components/ThreeColumnWithProfileImage.js";
 import Footer from "components/FiveColumnWithInputForm.js";
 
-// import chefIconImageSrc from "images/chef-icon.svg";
-// import celebrationIconImageSrc from "images/celebration-icon.svg";
-// import shopIconImageSrc from "images/shop-icon.svg";
+// import chefIconImageSrc from "assets/images/chef-icon.svg";
+// import celebrationIconImageSrc from "assets/images/celebration-icon.svg";
+// import shopIconImageSrc from "assets/images/shop-icon.svg";
 
 export const Home = () => {
   const Subheading = tw.span`tracking-wider text-sm font-medium`;
