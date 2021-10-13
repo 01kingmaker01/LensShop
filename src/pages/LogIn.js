@@ -1,20 +1,32 @@
+/* eslint-disable no-unused-vars */
 import React from "react";
 import AnimationRevealPage from "assets/helpers/AnimationRevealPage.js";
 import { Container as ContainerBase } from "components/misc/Layouts";
 import tw from "twin.macro";
-import { useDispatch } from "react-redux";
 import styled from "styled-components";
-import { css } from "styled-components/macro"; //eslint-disable-line
+import {
+  collection,
+  query,
+  where,
+  addDoc,
+  getDocs,
+  getFirestore,
+} from "firebase/firestore";
+import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 import illustration from "assets/svgs/login-illustration.svg";
 import logo from "assets/svgs/logo.svg";
 import googleIconImageSrc from "assets/images/google-icon.png";
 import twitterIconImageSrc from "assets/images/twitter-icon.png";
 import { ReactComponent as LoginIcon } from "assets/svgs/log-in.svg";
-import { provider } from "firebase";
-import { getAuth, signInWithPopup } from "firebase/auth";
+import {
+  GoogleAuthProvider,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+} from "@firebase/auth";
+import { auth, signInGoogle } from "firebase";
 import { SET_USER } from "redux/constant";
-import { history } from "redux/store";
 
 const Container = tw(
   ContainerBase
@@ -42,7 +54,7 @@ const SocialButton = styled.button`
 `;
 
 const DividerTextContainer = tw.div`my-12 border-b text-center relative`;
-const DividerText = tw.div`leading-none px-2 inline-block text-sm text-gray-600 tracking-wide font-medium bg-white transform -translate-y-1/2 absolute inset-x-0 top-1/2 bg-transparent`;
+const DividerText = tw.div`leading-none px-2 inline-block text-sm text-gray-600 tracking-wide font-medium bg-white transform -translate-y-1/2 absolute inset-x-0 top-1/2 `;
 
 const Form = tw.form`mx-auto max-w-xs`;
 const Input = tw.input`w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5 first:mt-0`;
@@ -57,15 +69,66 @@ const SubmitButton = styled.button`
 `;
 const IllustrationContainer = tw.div`sm:rounded-r-lg flex-1 bg-purple-100 text-center hidden lg:flex justify-center`;
 const IllustrationImage = styled.div`
-  ${(props) => `background-image: url("${props.imageSrc}");`}
+  ${(props) => `background-image: url("${props?.imageSrc}");`}
   ${tw`m-12 xl:m-16 w-full max-w-sm bg-contain bg-center bg-no-repeat`}
 `;
 
-export const LogIn = ({
-  logoLinkUrl = "#",
-  illustrationImageSrc = illustration,
-  headingText = "Sign In To Treact",
-  socialButtons = [
+export const LogIn = () => {
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const db = getFirestore();
+  const googleProvider = new GoogleAuthProvider();
+
+  const signInGoogle = async () => {
+    try {
+      const {
+        user: { displayName, email, photoURL, uid },
+      } = await signInWithPopup(auth, googleProvider);
+
+      const q = query(collection(db, "users"), where("uid", "==", uid));
+
+      const querySnapshot = await getDocs(q);
+
+      if (querySnapshot.docs.length === 0) {
+        console.log("object");
+        await addDoc(collection(db, "users"), {
+          displayName,
+          email,
+          photoURL,
+          uid,
+          authProvider: "google",
+        });
+      }
+
+      dispatch({
+        type: SET_USER,
+        userPayload: { displayName, email, photoURL, uid },
+      });
+      history.push("/home");
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  const signInEP = async (emailAdress, password) => {
+    try {
+      const {
+        user: { displayName, email, photoURL, uid },
+      } = await signInWithEmailAndPassword(auth, emailAdress, password);
+
+      dispatch({
+        type: SET_USER,
+        userPayload: { displayName, email, photoURL, uid },
+      });
+
+      history.push("/home");
+    } catch (err) {
+      console.error(err);
+      alert(err.message);
+    }
+  };
+
+  const socialButtons = [
     {
       iconImageSrc: googleIconImageSrc,
       text: "Sign In With Google",
@@ -76,55 +139,22 @@ export const LogIn = ({
       text: "Sign In With Twitter",
       url: "https://twitter.com",
     },
-  ],
-  submitButtonText = "Sign In",
-  SubmitButtonIcon = LoginIcon,
-  forgotPasswordUrl = "#",
-  signupUrl = "#",
-}) => {
-  const dispatch = useDispatch();
-
-  const auth = getAuth();
-
-  const signIn = async () => {
-    try {
-      const {
-        user: { displayName, email, photoURL },
-      } = await signInWithPopup(auth, provider);
-      const token = await getAuth()?.currentUser?.getIdToken();
-
-      if (token) {
-        localStorage.setItem("@userToken", token);
-      }
-
-      dispatch({
-        type: SET_USER,
-        userPayload: { displayName, email, photoURL },
-      });
-      history.push("/home");
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  ];
 
   return (
     <AnimationRevealPage>
       <Container>
         <Content>
           <MainContainer>
-            <LogoLink href={logoLinkUrl}>
+            <LogoLink href={`##`}>
               <LogoImage src={logo} />
             </LogoLink>
             <MainContent>
-              <Heading>{headingText}</Heading>
+              <Heading>Sign In To LenShop</Heading>
               <FormContainer>
                 <SocialButtonsContainer>
                   {socialButtons.map((socialButton, index) => (
-                    <SocialButton
-                      onClick={signIn}
-                      key={index}
-                      href={socialButton.url}
-                    >
+                    <SocialButton onClick={signInGoogle} key={index}>
                       <span className="iconContainer">
                         <img
                           src={socialButton.iconImageSrc}
@@ -141,26 +171,24 @@ export const LogIn = ({
                 </DividerTextContainer>
                 <Form>
                   <Input type="email" placeholder="Email" />
-                  <Input type="password" cc-number placeholder="Password" />
+                  <Input
+                    type="password"
+                    autoComplete="true"
+                    placeholder="Password"
+                  />
                   <SubmitButton type="submit">
-                    <SubmitButtonIcon className="icon" />
-                    <span className="text">{submitButtonText}</span>
+                    <LoginIcon className="icon" />
+                    <span className="text">Sign In</span>
                   </SubmitButton>
                 </Form>
                 <p tw="mt-6 text-xs text-gray-600 text-center">
-                  <a
-                    href={forgotPasswordUrl}
-                    tw="border-b border-gray-500 border-dotted"
-                  >
+                  <a href="##" tw="border-b border-gray-500 border-dotted">
                     Forgot Password ?
                   </a>
                 </p>
                 <p tw="mt-8 text-sm text-gray-600 text-center">
-                  Dont have an account?{" "}
-                  <a
-                    href={signupUrl}
-                    tw="border-b border-gray-500 border-dotted"
-                  >
+                  Dont have an account?
+                  <a href={`##`} tw="border-b border-gray-500 border-dotted">
                     Sign Up
                   </a>
                 </p>
@@ -168,7 +196,7 @@ export const LogIn = ({
             </MainContent>
           </MainContainer>
           <IllustrationContainer>
-            <IllustrationImage imageSrc={illustrationImageSrc} />
+            <IllustrationImage imageSrc={illustration} />
           </IllustrationContainer>
         </Content>
       </Container>

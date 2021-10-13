@@ -2,11 +2,12 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-import { GoogleAuthProvider } from "firebase/auth";
+import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCyP37Won1Qfz8QhA-19VingEMlTcW_PK4",
   authDomain: "lensshop-a021d.firebaseapp.com",
+  databaseURL: "https://lensshop-a021d-default-rtdb.firebaseio.com",
   projectId: "lensshop-a021d",
   storageBucket: "lensshop-a021d.appspot.com",
   messagingSenderId: "434487393822",
@@ -17,6 +18,4 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 
-const provider = new GoogleAuthProvider();
-
-export { provider };
+export const auth = getAuth();

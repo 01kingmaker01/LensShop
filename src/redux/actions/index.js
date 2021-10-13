@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { CREATE, FETCH_ALL, SET_USER, UPDATE, DELETE } from "../constant";
 
 export const checkUserData = () => async (dispatch) => {
