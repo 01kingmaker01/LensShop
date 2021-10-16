@@ -5,7 +5,6 @@ export const userReducer = (state = null, { type, userPayload }) => {
     case SET_USER:
       return userPayload;
     case DEL_USER:
-      console.log({ userPayload });
       return userPayload;
 
     default:

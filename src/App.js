@@ -22,10 +22,7 @@ const App = () => {
       try {
         if (user) {
           const { uid, accessToken } = user;
-          const q = await query(
-            collection(db, "users"),
-            where("uid", "==", uid)
-          );
+          const q = query(collection(db, "users"), where("uid", "==", uid));
           const querySnapshot = await getDocs(q);
           const userData = querySnapshot?.docs[0]?.data();
           if (userData) {

@@ -1,12 +1,16 @@
 import { connectRouter } from "connected-react-router";
-
 import { combineReducers } from "redux";
-// import { postsReducer } from "./posts";
+
+import { cartReducer } from "./cart";
+import { itemReducer } from "./item";
+import { orderReducer } from "./order";
 import { userReducer } from "./user";
 
 export const reducers = (history) =>
   combineReducers({
     router: connectRouter(history),
-    // postsReducer,
+    cartReducer,
+    itemReducer,
+    orderReducer,
     userReducer,
   });

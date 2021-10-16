@@ -9,6 +9,7 @@ import MainFeature2 from "components/TwoColSingleFeatureWithStats2.js";
 import TabGrid from "components/TabCardGrid.js";
 import Testimonial from "components/ThreeColumnWithProfileImage.js";
 import Footer from "components/FiveColumnWithInputForm.js";
+import { getItems } from "redux/actions/itemActions";
 
 // import chefIconImageSrc from "assets/images/chef-icon.svg";
 // import celebrationIconImageSrc from "assets/images/celebration-icon.svg";
@@ -20,6 +21,8 @@ const HighlightedText = tw.span`bg-primary-500 text-gray-100 px-4 transform -ske
 const Description = tw.span`inline-block mt-8`;
 const imageCss = tw`rounded-4xl`;
 export const Home = () => {
+  getItems()();
+
   return (
     <AnimationRevealPage>
       <Hero
