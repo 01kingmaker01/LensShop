@@ -1,13 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import AnimationRevealPage from "assets/helpers/AnimationRevealPage.js";
 import tw from "twin.macro";
 import styled from "styled-components";
+import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 import illustration from "assets/svgs/signup-illustration.svg";
 import logo from "assets/svgs/logo.svg";
 import googleIconImageSrc from "assets/images/google-icon.png";
 import twitterIconImageSrc from "assets/images/twitter-icon.png";
 import { ReactComponent as SignUpIcon } from "assets/svgs/user-plus.svg";
+import {
+  createUserWithEmailAndPassword,
+  signInWithPopup,
+} from "@firebase/auth";
+import { auth, db, googleProvider } from "firebase";
+import { addDoc, collection, getDocs, query, where } from "@firebase/firestore";
+import { SET_USER } from "redux/constant";
 
 const ContainerBase = tw.div`relative`;
 const Container = tw(
@@ -36,7 +45,7 @@ const SocialButton = styled.button`
 `;
 
 const DividerTextContainer = tw.div`my-12 border-b text-center relative`;
-const DividerText = tw.div`leading-none px-2 inline-block text-sm text-gray-600 tracking-wide font-medium bg-white transform -translate-y-1/2 absolute inset-x-0 top-1/2 bg-transparent`;
+const DividerText = tw.div`leading-none px-2 inline-block text-sm text-gray-600 tracking-wide font-medium bg-white transform -translate-y-1/2 absolute inset-x-0 top-1/2 `;
 
 const Form = tw.form`mx-auto max-w-xs`;
 const Input = tw.input`w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5 first:mt-0`;
@@ -68,69 +77,174 @@ export const SignUp = ({
       url: "https://twitter.com",
     },
   ],
-}) => (
-  <AnimationRevealPage>
-    <Container>
-      <Content>
-        <MainContainer>
-          <LogoLink href="/home">
-            <LogoImage src={logo} />
-          </LogoLink>
-          <MainContent>
-            <Heading>Sign Up For Treact</Heading>
-            <FormContainer>
-              <SocialButtonsContainer>
-                {socialButtons.map((socialButton, index) => (
-                  <SocialButton key={index}>
-                    <span className="iconContainer">
-                      <img
-                        src={socialButton.iconImageSrc}
-                        className="icon"
-                        alt=""
-                      />
-                    </span>
-                    <span className="text">{socialButton.text}</span>
-                  </SocialButton>
-                ))}
-              </SocialButtonsContainer>
-              <DividerTextContainer>
-                <DividerText>Or Sign up with your e-mail</DividerText>
-              </DividerTextContainer>
-              <Form>
-                <Input type="text" placeholder="Name" />
-                <Input type="email" placeholder="Email" />
-                <Input type="url" placeholder="Display Image Url" />
-                <Input type="password" placeholder="Password" />
+}) => {
+  const dispatch = useDispatch();
+  const history = useHistory();
 
-                <SubmitButton type="submit">
-                  <SignUpIcon className="icon" />
-                  <span className="text">SignUp</span>
-                </SubmitButton>
-                <p tw="mt-6 text-xs text-gray-600 text-center">
-                  I agree to abide by treact's{" "}
-                  <a href="##" tw="border-b border-gray-500 border-dotted">
-                    Terms of Service
-                  </a>{" "}
-                  and its{" "}
-                  <a href="##" tw="border-b border-gray-500 border-dotted">
-                    Privacy Policy
-                  </a>
-                </p>
+  const [user, setUser] = useState({
+    displayName: "",
+    email: "",
+    photoURL: "",
+    password: "",
+  });
 
-                <p tw="mt-8 text-sm text-gray-600 text-center">
-                  Already have an account?{" "}
-                  <a href="##" tw="border-b border-gray-500 border-dotted">
-                    Sign In
-                  </a>
-                </p>
-              </Form>
-            </FormContainer>
-          </MainContent>
-        </MainContainer>
-        <IllustrationContainer>
-          <IllustrationImage imageSrc={illustration} />
-        </IllustrationContainer>
-      </Content>
-    </Container>
-  </AnimationRevealPage>
-);
+  const registerWithEmailAndPassword = async (e) => {
+    try {
+      e.preventDefault();
+
+      const { displayName, email, photoURL, password } = user;
+
+      const { user: userData } = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+
+      await addDoc(collection(db, "users"), {
+        displayName,
+        email,
+        photoURL,
+        uid: userData.uid,
+        authProvider: "local",
+      });
+      dispatch({
+        type: SET_USER,
+        userPayload: { displayName, email, photoURL, uid: userData.uid },
+      });
+      history.push("/home");
+    } catch (err) {
+      console.error(err);
+      alert(err.message);
+    }
+  };
+
+  const signUpGoogle = async (e) => {
+    try {
+      e.preventDefault();
+
+      const {
+        user: { displayName, email, photoURL, uid },
+      } = await signInWithPopup(auth, googleProvider);
+
+      const q = query(collection(db, "users"), where("uid", "==", uid));
+
+      const querySnapshot = await getDocs(q);
+
+      if (querySnapshot.docs.length !== 0) {
+        throw new Error("User already exist!!\nTry LogIn");
+      } else {
+        await addDoc(collection(db, "users"), {
+          displayName,
+          email,
+          photoURL,
+          uid,
+          authProvider: "google",
+        });
+
+        dispatch({
+          type: SET_USER,
+          userPayload: { displayName, email, photoURL, uid },
+        });
+        history.push("/home");
+      }
+    } catch (e) {
+      alert(e);
+      console.error(e);
+    }
+  };
+
+  return (
+    <AnimationRevealPage>
+      <Container>
+        <Content>
+          <MainContainer>
+            <LogoLink href="/home">
+              <LogoImage src={logo} />
+            </LogoLink>
+            <MainContent>
+              <Heading>Sign Up For Treact</Heading>
+              <FormContainer>
+                <SocialButtonsContainer>
+                  {socialButtons.map((socialButton, index) => (
+                    <SocialButton onClick={signUpGoogle} key={index}>
+                      <span className="iconContainer">
+                        <img
+                          src={socialButton.iconImageSrc}
+                          className="icon"
+                          alt="imgz fht"
+                        />
+                      </span>
+                      <span className="text">{socialButton.text}</span>
+                    </SocialButton>
+                  ))}
+                </SocialButtonsContainer>
+                <DividerTextContainer>
+                  <DividerText>Or Sign up with your e-mail</DividerText>
+                </DividerTextContainer>
+                <Form>
+                  <Input
+                    onChange={(e) =>
+                      setUser({ ...user, displayName: e.target.value })
+                    }
+                    value={user.displayName}
+                    type="text"
+                    placeholder="Name"
+                  />
+                  <Input
+                    onChange={(e) =>
+                      setUser({ ...user, email: e.target.value })
+                    }
+                    value={user.email}
+                    type="email"
+                    placeholder="Email"
+                  />
+                  <Input
+                    onChange={(e) =>
+                      setUser({ ...user, photoURL: e.target.value })
+                    }
+                    value={user.photoURL}
+                    type="url"
+                    placeholder="Display Image Url"
+                  />
+                  <Input
+                    onChange={(e) =>
+                      setUser({ ...user, password: e.target.value })
+                    }
+                    value={user.password}
+                    type="password"
+                    placeholder="Password"
+                  />
+
+                  <SubmitButton onClick={registerWithEmailAndPassword}>
+                    <SignUpIcon className="icon" />
+                    <span className="text">SignUp</span>
+                  </SubmitButton>
+                  <p tw="mt-6 text-xs text-gray-600 text-center">
+                    I agree to abide by treact's{" "}
+                    <a href="##" tw="border-b border-gray-500 border-dotted">
+                      Terms of Service
+                    </a>{" "}
+                    and its{" "}
+                    <a href="##" tw="border-b border-gray-500 border-dotted">
+                      Privacy Policy
+                    </a>
+                  </p>
+
+                  <p tw="mt-8 text-sm text-gray-600 text-center">
+                    Already have an account?{" "}
+                    <a href="##" tw="border-b border-gray-500 border-dotted">
+                      Sign In
+                    </a>
+                  </p>
+                </Form>
+              </FormContainer>
+            </MainContent>
+          </MainContainer>
+          <IllustrationContainer>
+            <IllustrationImage imageSrc={illustration} />
+          </IllustrationContainer>
+        </Content>
+      </Container>
+    </AnimationRevealPage>
+  );
+};
