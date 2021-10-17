@@ -34,6 +34,7 @@ const WatchVideoButton = styled.button`
     ${tw`ml-2 font-medium`}
   }
 `;
+const HighlightedText = tw.span`bg-primary-500 text-gray-100 px-4 transform -skew-x-12 inline-block`;
 
 const IllustrationContainer = tw.div`flex justify-center md:justify-end items-center relative max-w-3xl lg:max-w-none`;
 
@@ -58,17 +59,7 @@ const StyledModal = styled(ReactModalAdapter)`
 `;
 const CloseModalButton = tw.button`absolute top-0 right-0 mt-8 mr-8 hocus:text-primary-500`;
 
-export default ({
-  heading = "Modern React Templates, Just For You",
-  description = "Our templates are easy to setup, understand and customize. Fully modular components with a variety of pages and components.",
-  primaryButtonText = "Get Started",
-  primaryButtonUrl = "#",
-  watchVideoButtonText = "Watch Video",
-  watchVideoYoutubeUrl = "https://www.youtube.com/embed/_GuOjXYl5ew",
-  imageSrc = DesignIllustration,
-  imageCss = null,
-  imageDecoratorBlob = false,
-}) => {
+export default () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const toggleModal = () => setModalIsOpen(!modalIsOpen);
@@ -79,24 +70,34 @@ export default ({
       <Container>
         <TwoColumn>
           <LeftColumn>
-            <Heading>{heading}</Heading>
-            <Paragraph>{description}</Paragraph>
+            <Heading>
+              Greact & Affordable{"  "}
+              <HighlightedText>Specs for You.</HighlightedText>
+            </Heading>
+            <Paragraph>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            </Paragraph>
             <Actions>
-              <PrimaryButton as="a" href={primaryButtonUrl}>
-                {primaryButtonText}
+              <PrimaryButton as="a" href="#">
+                Order Now
               </PrimaryButton>
               <WatchVideoButton onClick={toggleModal}>
                 <span className="playIconContainer">
                   <PlayIcon className="playIcon" />
                 </span>
-                <span className="playText">{watchVideoButtonText}</span>
+                <span className="playText">Try Virtually</span>
               </WatchVideoButton>
             </Actions>
           </LeftColumn>
           <RightColumn>
             <IllustrationContainer>
-              <img css={imageCss} src={imageSrc} alt="Hero" />
-              {imageDecoratorBlob && <DecoratorBlob2 />}
+              <img
+                css={tw`rounded-4xl`}
+                src="https://images.unsplash.com/photo-1582266255765-fa5cf1a1d501?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8YW5vbnltb3VzfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60"
+                alt="Hero"
+              />
+              <DecoratorBlob2 />
             </IllustrationContainer>
           </RightColumn>
         </TwoColumn>
@@ -112,7 +113,10 @@ export default ({
             <CloseIcon tw="w-6 h-6" />
           </CloseModalButton>
           <div className="content">
-            <ResponsiveVideoEmbed url={watchVideoYoutubeUrl} tw="w-full" />
+            <ResponsiveVideoEmbed
+              url="https://www.youtube.com/embed/_GuOjXYl5ew"
+              tw="w-full"
+            />
           </div>
         </StyledModal>
       </Container>
