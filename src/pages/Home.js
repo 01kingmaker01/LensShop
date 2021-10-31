@@ -41,23 +41,23 @@ export const Home = () => {
         cards={[
           {
             imageSrc:
-              "https://images.unsplash.com/photo-1582266255765-fa5cf1a1d501?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8YW5vbnltb3VzfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60",
+              "https://static5.lenskart.com/storeimages/LKST240/WhatsApp%20Image%202020-01-07%20at%201.03.41%20PM.jpeg",
             title: "230+ Locations",
-            description: "Lorem ipsum donor amet siti ceali placeholder text",
+            description: "Customers can visit us at any location in case of any queries.",
             url: "https://google.com",
           },
           {
             imageSrc:
-              "https://images.unsplash.com/photo-1582266255765-fa5cf1a1d501?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8YW5vbnltb3VzfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60",
+              "https://i.ytimg.com/vi/gJuScKSgvGM/maxresdefault.jpg",
             title: "Professional Craftsmen",
-            description: "Lorem ipsum donor amet siti ceali placeholder text",
+            description: "We have the best craftsmen in the lens-making industry.",
             url: "https://timerse.com",
           },
           {
             imageSrc:
-              "https://images.unsplash.com/photo-1582266255765-fa5cf1a1d501?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8YW5vbnltb3VzfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60",
+              "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/More_Icon_C.svg/1200px-More_Icon_C.svg.png",
             title: "Many More",
-            description: "Lorem ipsum donor amet siti ceali placeholder text",
+            description: "We have more amazing services which gives us edge in our field.",
             url: "https://reddit.com",
           },
         ]}
@@ -88,7 +88,7 @@ export const Home = () => {
         primaryButtonText="Order Now"
         primaryButtonUrl="https://order.now.com"
         imageInsideDiv={false}
-        imageSrc="https://images.unsplash.com/photo-1582266255765-fa5cf1a1d501?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8YW5vbnltb3VzfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60"
+        imageSrc="https://thumbs.dreamstime.com/b/young-attractive-man-sunglasses-looking-out-over-sea-summer-looking-forward-dressed-white-shirt-126191466.jpg"
         imageCss={Object.assign(tw`bg-cover`, imageCss)}
         imageContainerCss={tw`md:w-1/2 h-auto`}
         imageDecoratorBlob={true}

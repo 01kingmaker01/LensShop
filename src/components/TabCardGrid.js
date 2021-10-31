@@ -192,7 +192,7 @@ const getRandomCards = () => {
   const cards = [
     {
       imageSrc:
-        "https://images.unsplash.com/photo-1582266255765-fa5cf1a1d501?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8YW5vbnltb3VzfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60",
+        "https://static.lenskart.com/media/catalog/product/cache/1/small_image/376x180/9df78eab33525d08d6e5fb8d27136e95//j/o/john-jacobs-jj-s12808-c2-sunglasses_g_8839.jpg",
       title: "SunGlasses",
       content: "Look Cool & Smart",
       price: "$5.99",
@@ -202,7 +202,7 @@ const getRandomCards = () => {
     },
     {
       imageSrc:
-        "https://images.unsplash.com/photo-1582266255765-fa5cf1a1d501?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8YW5vbnltb3VzfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60",
+        "https://static2.lenskart.com/media/catalog/product/cache/1/small_image/376x180/9df78eab33525d08d6e5fb8d27136e95//v/i/vincent-chase-vc-s12919-c4-sunglasses_sunglasses_g_6261_1_1.jpg",
       title: "SunGlasses",
       content: "Look Cool & Smart",
       price: "$3.99",
@@ -212,7 +212,7 @@ const getRandomCards = () => {
     },
     {
       imageSrc:
-        "https://images.unsplash.com/photo-1582266255765-fa5cf1a1d501?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8YW5vbnltb3VzfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60",
+        "https://static2.lenskart.com/media/catalog/product/cache/1/small_image/376x180/9df78eab33525d08d6e5fb8d27136e95//v/i/vincent-chase-vc-s14116-c1-c1-sunglasses_G_0132.jpg",
       title: "SunGlasses",
       content: "Look Cool & Smart",
       price: "$3.99",
@@ -222,7 +222,7 @@ const getRandomCards = () => {
     },
     {
       imageSrc:
-        "https://images.unsplash.com/photo-1582266255765-fa5cf1a1d501?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8YW5vbnltb3VzfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60",
+        "https://static1.lenskart.com/media/catalog/product/cache/1/small_image/376x180/9df78eab33525d08d6e5fb8d27136e95//v/i/vincent-chase-vc-s14122-c4-c4-sunglasses_G_0003.jpg",
       title: "SunGlasses",
       content: "Look Cool & Smart",
       price: "$3.99",
@@ -232,7 +232,7 @@ const getRandomCards = () => {
     },
     {
       imageSrc:
-        "https://images.unsplash.com/photo-1582266255765-fa5cf1a1d501?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8YW5vbnltb3VzfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60",
+        "https://static.lenskart.com/media/catalog/product/cache/1/small_image/376x180/9df78eab33525d08d6e5fb8d27136e95//v/i/vincent-chase-vc-s11740-c1-sunglasses_sunglasses_j_6403_1_1.jpg",
       title: "SunGlasses",
       content: "Look Cool & Smart",
       price: "$2.99",
@@ -242,7 +242,7 @@ const getRandomCards = () => {
     },
     {
       imageSrc:
-        "https://images.unsplash.com/photo-1582266255765-fa5cf1a1d501?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8YW5vbnltb3VzfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60",
+        "https://static1.lenskart.com/media/catalog/product/cache/1/small_image/376x180/9df78eab33525d08d6e5fb8d27136e95//j/o/john-jacobs-jj-s12043-c1-sunglasses_sunglasses_G_2081_1_1.jpg",
       title: "SunGlasses",
       content: "Look Cool & Smart",
       price: "$7.99",
@@ -252,7 +252,7 @@ const getRandomCards = () => {
     },
     {
       imageSrc:
-        "https://images.unsplash.com/photo-1582266255765-fa5cf1a1d501?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8YW5vbnltb3VzfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60",
+        "https://static.lenskart.com/media/catalog/product/cache/1/small_image/376x180/9df78eab33525d08d6e5fb8d27136e95//j/o/john-jacobs-jj-s13869-fvll-rem-c1-sunglasses_g_0560.jpg",
       title: "SunGlasses",
       content: "Look Cool & Smart",
       price: "$8.99",
@@ -262,7 +262,7 @@ const getRandomCards = () => {
     },
     {
       imageSrc:
-        "https://images.unsplash.com/photo-1582266255765-fa5cf1a1d501?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8YW5vbnltb3VzfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60",
+        "https://static2.lenskart.com/media/catalog/product/cache/1/small_image/376x180/9df78eab33525d08d6e5fb8d27136e95//v/i/vincent-chase-vc-s13139-c4-sunglasses_sunglasses_sunglasses_j_4137_1_1.jpg",
       title: "SunGlasses",
       content: "Look Cool & Smart",
       price: "$7.99",
