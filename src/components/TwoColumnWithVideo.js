@@ -75,8 +75,7 @@ export default () => {
               <HighlightedText>Specs for You.</HighlightedText>
             </Heading>
             <Paragraph>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            We offer best specs at most affordable prices. Because of this, every economic class of customer can afford our specs.
             </Paragraph>
             <Actions>
               <PrimaryButton as="a" href="#">
@@ -94,7 +93,7 @@ export default () => {
             <IllustrationContainer>
               <img
                 css={tw`rounded-4xl`}
-                src="https://images.unsplash.com/photo-1582266255765-fa5cf1a1d501?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8YW5vbnltb3VzfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60"
+                src="https://images.unsplash.com/photo-1500841737808-4411cada455e?ixid=MnwxMjA3fDB8MHxzZWFyY2h8N3x8c3BlY3N8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
                 alt="Hero"
               />
               <DecoratorBlob2 />

@@ -53,7 +53,7 @@ export default () => {
         <ImageColumn>
           <Image
             css={tw`rounded-4xl`}
-            src="https://images.unsplash.com/photo-1582266255765-fa5cf1a1d501?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8YW5vbnltb3VzfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60"
+            src="https://images.unsplash.com/photo-1566232212863-d8543adb6eda?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fHNwZWNzfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
           />
           <DecoratorBlob
             css={tw`left-1/2 -translate-x-1/2 md:w-32 md:h-32 opacity-25`}
@@ -68,12 +68,10 @@ export default () => {
             </Heading>
             <Description>
               {" "}
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              We have prolonged experience in our field of making lenses. We hire best and very experienced lens craftsmen to work for us.
               <br />
               <br />
-              Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat.
+              Hence our customer gets best lenses of his choice. Our experienced employees ensure best customer experience.
             </Description>
             <PrimaryButton as="a" href="#">
               Latest Offers

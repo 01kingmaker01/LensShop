@@ -31,23 +31,23 @@ export default ({
   testimonials = [
     {
       imageSrc:
-        "https://images.unsplash.com/photo-1582266255765-fa5cf1a1d501?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8YW5vbnltb3VzfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60",
+        "https://haircutinspiration.com/wp-content/uploads/2016/07/Side-Part-Hair-Glasses.jpg",
       quote:
-        "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia.",
+        "Top quality lenses & frames at very reasonable prices. They provided me all additional coatings for free without any additional costs. Strongly recommend.",
       customerName: "Charlotte Hale",
     },
     {
       imageSrc:
-        "https://images.unsplash.com/photo-1582266255765-fa5cf1a1d501?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8YW5vbnltb3VzfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDDs-mbDrJbMeIO0gO_hk4VeM6O8sUnvv3-A&usqp=CAU",
       quote:
-        "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia.",
+        "LensShop has set a new standard for eye care products. Exquisite frames, finely cut lens & flawless finish. PERFECTLY EXECUTED PRODUCT!",
       customerName: "Adam Cuppy",
     },
     {
       imageSrc:
-        "https://images.unsplash.com/photo-1582266255765-fa5cf1a1d501?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8YW5vbnltb3VzfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQO1spNwcsnZ4P5wkTbg2sHLlpHApvfely8Pw&usqp=CAU",
       quote:
-        "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia.",
+        "Unmatched customer service! I have spoken with & emailed customer support to make adjustments on my purchase; they were considerate & helpful. You've got a customer for life!",
       customerName: "Steven Marcetti",
     },
   ],
