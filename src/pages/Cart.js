@@ -88,6 +88,7 @@ export const Cart = () => {
           </div>
         ))}
       </div>
+
       <Footer />
     </AnimationRevealPage>
   );
