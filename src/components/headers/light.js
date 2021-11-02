@@ -10,6 +10,7 @@ import useAnimatedNavToggler from "assets/helpers/useAnimatedNavToggler.js";
 import logo from "assets/svgs/logo.svg";
 import { ReactComponent as MenuIcon } from "assets/svgs/menu.svg";
 import { ReactComponent as CloseIcon } from "assets/svgs/x.svg";
+import { NavLink } from "react-router-dom";
 
 const Header = tw.header`
 flex justify-between items-center
@@ -21,20 +22,20 @@ export const NavLinks = tw.div`inline-block`;
 /* hocus: stands for "on hover or focus"
  * hocus:bg-primary-700 will apply the bg-primary-700 class on hover or focus
  */
-export const NavLink = tw.a`
+export const NavLinkCon = tw.span`
 text-lg my-2 lg:text-sm lg:mx-6 lg:my-0
 font-semibold tracking-wide transition duration-300
 pb-1 border-b-2 border-transparent hover:border-primary-500 hocus:text-primary-500
 `;
 
-export const PrimaryLink = tw(NavLink)`
+export const PrimaryLink = tw(NavLinkCon)`
   lg:mx-0
   px-8 py-3 rounded bg-primary-500 text-gray-100
   hocus:bg-primary-700 hocus:text-gray-200 focus:shadow-outline
   border-b-0
 `;
 
-export const LogoLink = styled(NavLink)`
+export const LogoLink = styled(NavLinkCon)`
   ${tw`flex items-center font-black border-b-0 text-2xl! ml-0!`};
 
   img {
@@ -47,7 +48,7 @@ export const NavToggle = tw.button`
 lg:hidden z-20 focus:outline-none hocus:text-primary-500 transition duration-300
 `;
 export const MobileNavLinks = motion(styled.div`
-  ${tw`lg:hidden z-10 fixed top-0 inset-x-0 mx-4 my-6 p-8 border text-center rounded-lg text-gray-900 bg-white`}
+  ${tw`lg:hidden z-20 fixed top-0 inset-x-0 mx-4 my-6 p-8 border text-center rounded-lg text-gray-900 bg-white`}
   ${NavLinks} {
     ${tw`flex flex-col items-center`}
   }
@@ -66,14 +67,14 @@ export default ({
 }) => {
   const defaultLinks = [
     <NavLinks key={1}>
-      <NavLink href="/#">About</NavLink>
-      <NavLink href="/#">Blog</NavLink>
-      <NavLink href="/#">Pricing</NavLink>
-      <NavLink href="/#">Contact Us</NavLink>
-      <NavLink href="/#" tw="lg:ml-12!">
-        Login
-      </NavLink>
-      <PrimaryLink css={roundedHeaderButton && tw`rounded-full`} href="/#">
+      <NavLinkCon>About</NavLinkCon>
+      <NavLinkCon>Blog</NavLinkCon>
+      <NavLinkCon>Pricing</NavLinkCon>
+      <NavLinkCon>
+        <NavLink to="/cart">Cart</NavLink>
+      </NavLinkCon>
+      <NavLinkCon tw="lg:ml-12!">Login</NavLinkCon>
+      <PrimaryLink css={roundedHeaderButton && tw`rounded-full`}>
         Sign Up
       </PrimaryLink>
     </NavLinks>,
@@ -101,20 +102,17 @@ export default ({
       </DesktopNavLinks>
 
       <MobileNavLinksContainer
-        css={collapseBreakpointCss.mobileNavLinksContainer}
-      >
+        css={collapseBreakpointCss.mobileNavLinksContainer}>
         {logoLink}
         <MobileNavLinks
           initial={{ x: "150%", display: "none" }}
           animate={animation}
-          css={collapseBreakpointCss.mobileNavLinks}
-        >
+          css={collapseBreakpointCss.mobileNavLinks}>
           {links}
         </MobileNavLinks>
         <NavToggle
           onClick={toggleNavbar}
-          className={showNavLinks ? "open" : "closed"}
-        >
+          className={showNavLinks ? "open" : "closed"}>
           {showNavLinks ? (
             <CloseIcon tw="w-6 h-6" />
           ) : (

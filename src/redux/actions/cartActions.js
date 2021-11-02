@@ -20,12 +20,27 @@ export const addToCart = (id, productId, quantity) => async (dispatch) => {
   });
 };
 
-export const deleteFromCart = (userId, itemId) => async (dispatch) => {
+export const deleteFromCart = (userId, productId) => async (dispatch) => {
   const { data } = await axios.delete(
-    `http://localhost:6969/api/cart/${userId}/${itemId}`
+    `http://localhost:6969/api/cart/${userId}/${productId}`
   );
   return dispatch({
     type: DELETE_FROM_CART,
     payload: data,
   });
 };
+
+export const reduceFromCart =
+  (userId, productId, quantity) => async (dispatch) => {
+    console.log({ userId, productId, quantity });
+
+    const { data } = await axios.patch(
+      `http://localhost:6969/api/cart/${userId}`,
+      { productId, quantity }
+    );
+
+    return dispatch({
+      type: DELETE_FROM_CART,
+      payload: data,
+    });
+  };

@@ -1,6 +1,7 @@
 import { GET_CART, ADD_TO_CART, DELETE_FROM_CART } from "redux/constant";
 
 export const cartReducer = (state = [], { type, payload }) => {
+  console.log({ payload });
   switch (type) {
     case GET_CART:
       return payload;

@@ -3,7 +3,7 @@ import { GET_ITEMS, ADD_ITEM, UPDATE_ITEM, DELETE_ITEM } from "redux/constant";
 export const itemReducer = (state = [], { type, itemPayload }) => {
   switch (type) {
     case GET_ITEMS:
-      return [...state, ...itemPayload];
+      return [ ...itemPayload];
 
     case ADD_ITEM:
       return [...state, itemPayload];
