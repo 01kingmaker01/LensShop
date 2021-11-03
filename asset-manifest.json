@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/LensShop/home/static/css/main.b62238b1.chunk.css",
-    "main.js": "/LensShop/home/static/js/main.1fe9622b.chunk.js",
-    "main.js.map": "/LensShop/home/static/js/main.1fe9622b.chunk.js.map",
+    "main.js": "/LensShop/home/static/js/main.ae836ded.chunk.js",
+    "main.js.map": "/LensShop/home/static/js/main.ae836ded.chunk.js.map",
     "runtime-main.js": "/LensShop/home/static/js/runtime-main.9fcc0a00.js",
     "runtime-main.js.map": "/LensShop/home/static/js/runtime-main.9fcc0a00.js.map",
-    "static/js/2.c1c447ca.chunk.js": "/LensShop/home/static/js/2.c1c447ca.chunk.js",
-    "static/js/2.c1c447ca.chunk.js.map": "/LensShop/home/static/js/2.c1c447ca.chunk.js.map",
+    "static/js/2.9c557d3d.chunk.js": "/LensShop/home/static/js/2.9c557d3d.chunk.js",
+    "static/js/2.9c557d3d.chunk.js.map": "/LensShop/home/static/js/2.9c557d3d.chunk.js.map",
     "index.html": "/LensShop/home/index.html",
     "static/css/main.b62238b1.chunk.css.map": "/LensShop/home/static/css/main.b62238b1.chunk.css.map",
-    "static/js/2.c1c447ca.chunk.js.LICENSE.txt": "/LensShop/home/static/js/2.c1c447ca.chunk.js.LICENSE.txt",
+    "static/js/2.9c557d3d.chunk.js.LICENSE.txt": "/LensShop/home/static/js/2.9c557d3d.chunk.js.LICENSE.txt",
     "static/media/arrow-right-icon.c4ea6a92.svg": "/LensShop/home/static/media/arrow-right-icon.c4ea6a92.svg",
     "static/media/customize-icon.367468c9.svg": "/LensShop/home/static/media/customize-icon.367468c9.svg",
     "static/media/dot-pattern.ee6f4f0e.svg": "/LensShop/home/static/media/dot-pattern.ee6f4f0e.svg",
@@ -37,8 +37,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.9fcc0a00.js",
-    "static/js/2.c1c447ca.chunk.js",
+    "static/js/2.9c557d3d.chunk.js",
     "static/css/main.b62238b1.chunk.css",
-    "static/js/main.1fe9622b.chunk.js"
+    "static/js/main.ae836ded.chunk.js"
   ]
 }
