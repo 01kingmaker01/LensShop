@@ -3,7 +3,7 @@ import { GET_CART, ADD_TO_CART, DELETE_FROM_CART } from "redux/constant";
 
 export const getCart = (id) => async (dispatch) => {
   const { data } = await axios.get(
-    `https://lenshop-backend.herokuapp.com//api/cart/${id}`
+    `https://lenshop-backend.herokuapp.com/api/cart/${id}`
   );
   return dispatch({
     type: GET_CART,
@@ -13,7 +13,7 @@ export const getCart = (id) => async (dispatch) => {
 
 export const addToCart = (id, productId, quantity) => async (dispatch) => {
   const { data } = await axios.post(
-    `https://lenshop-backend.herokuapp.com//api/cart/${id}`,
+    `https://lenshop-backend.herokuapp.com/api/cart/${id}`,
     {
       productId,
       quantity,
@@ -27,7 +27,7 @@ export const addToCart = (id, productId, quantity) => async (dispatch) => {
 
 export const deleteFromCart = (userId, productId) => async (dispatch) => {
   const { data } = await axios.delete(
-    `https://lenshop-backend.herokuapp.com//api/cart/${userId}/${productId}`
+    `https://lenshop-backend.herokuapp.com/api/cart/${userId}/${productId}`
   );
   return dispatch({
     type: DELETE_FROM_CART,
@@ -40,7 +40,7 @@ export const reduceFromCart =
     console.log({ userId, productId, quantity });
 
     const { data } = await axios.patch(
-      `https://lenshop-backend.herokuapp.com//api/cart/${userId}`,
+      `https://lenshop-backend.herokuapp.com/api/cart/${userId}`,
       { productId, quantity }
     );
 

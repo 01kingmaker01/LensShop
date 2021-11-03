@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const url = "https://lenshop-backend.herokuapp.com//api/";
+const url = "https://lenshop-backend.herokuapp.com/api/";
 
 export const fetchPosts = () => axios.get(`${url}/items`);
 

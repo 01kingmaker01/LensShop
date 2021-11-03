@@ -4,7 +4,7 @@ import { GET_ORDERS, CHECKOUT } from "redux/constant";
 
 export const getOrders = (id) => async (dispatch) => {
   const { data } = await axios.get(
-    `https://lenshop-backend.herokuapp.com//api/order/${id}`
+    `https://lenshop-backend.herokuapp.com/api/order/${id}`
   );
   dispatch({
     type: GET_ORDERS,
@@ -14,7 +14,7 @@ export const getOrders = (id) => async (dispatch) => {
 
 export const checkout = (id, source) => async (dispatch) => {
   const { data } = await axios.post(
-    `https://lenshop-backend.herokuapp.com//api/order/${id}`,
+    `https://lenshop-backend.herokuapp.com/api/order/${id}`,
     {
       source,
     }
@@ -27,7 +27,7 @@ export const checkout = (id, source) => async (dispatch) => {
 
 export const StripeCheckoutAction = (id) => async () => {
   const { data } = await axios.post(
-    `https://lenshop-backend.herokuapp.com//api/checkout/${id}`
+    `https://lenshop-backend.herokuapp.com/api/checkout/${id}`
   );
   console.log({ data });
 };
