@@ -6,10 +6,10 @@
 
 import axios from "axios";
 // const instance = axios.create({
-//   baseURL: "http://localhost:6969",
+//   baseURL: "https://lenshop-backend.herokuapp.com/",
 // });
 
-axios.defaults.baseURL = "http://localhost:6969";
+axios.defaults.baseURL = "https://lenshop-backend.herokuapp.com/";
 
 const setToken = async (token) => {
   console.warn({ token });

@@ -1,5 +1,6 @@
 import React, { useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
+// import StripeCheckout from "react-stripe-checkout";
 
 import AnimationRevealPage from "assets/helpers/AnimationRevealPage.js";
 import Header from "components/headers/light.js";
@@ -9,6 +10,8 @@ import { ReactComponent as CartIcon } from "assets/svgs/shopping-cart.svg";
 
 import styled from "styled-components";
 import { addToCart, reduceFromCart } from "redux/actions/cartActions";
+// import { Checkout } from "components/Stripe";
+import { StripeCheckoutAction } from "redux/actions/orderActions";
 const Title = styled.div`
   font-weight: 700;
   // white-space: nowrap;
@@ -22,6 +25,9 @@ export const Cart = () => {
   const quantity = useRef();
   // console.log({ q: parseInt(quantity.current.innerHTML) + 10 });
   const { cartReducer, userReducer } = useSelector((state) => state);
+  // const STRIPE_PUBLISHABLE =
+  //   "pk_test_51JhY3ZSGXiJf0VkcrQDoXtHOoks7UeXDutS2wPHhXZbjDQEr3O2dTgAKe9nsKzWsCd5D5psS8hdT6R33vPg9qaAp00TfN3LDKR";
+  // const onToken = (token) => dispatch(checkout(userReducer?.uid, token?.id));
 
   return (
     <AnimationRevealPage>
@@ -88,8 +94,20 @@ export const Cart = () => {
           </div>
         ))}
       </div>
+      <div className="text-2xl">{cartReducer?.bill}</div>
 
+      <button onClick={() => dispatch(StripeCheckoutAction(userReducer?.uid))}>
+        Checkout
+      </button>
+
+      {/* <StripeCheckout
+        amount={cartReducer?.bill * 100}
+        token={onToken()}
+        currency="INR"
+        stripeKey={STRIPE_PUBLISHABLE}
+      /> */}
       <Footer />
     </AnimationRevealPage>
   );
 };
+// gigevip800@cyadp.com
