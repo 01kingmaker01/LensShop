@@ -73,7 +73,9 @@ export default ({
       <NavLinkCon>
         <NavLink to="/cart">Cart</NavLink>
       </NavLinkCon>
-      <NavLinkCon tw="lg:ml-12!">Login</NavLinkCon>
+      <NavLinkCon tw="lg:ml-12!">
+        <NavLink to="/signin">Login</NavLink>
+      </NavLinkCon>
       <PrimaryLink css={roundedHeaderButton && tw`rounded-full`}>
         Sign Up
       </PrimaryLink>

@@ -18,6 +18,7 @@ import { getCart } from "redux/actions/cartActions";
 // import { userReducer } from "redux/reducer/user";
 import { Item } from "pages/Item";
 import { Cart } from "pages/Cart";
+import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -61,6 +62,9 @@ const App = () => {
     <ConnectedRouter history={history}>
       <>
         <Switch>
+          <Route exact path="/">
+            <Redirect to={{ pathname: "home" }} />
+          </Route>
           <Route exact path="/home" component={Home} />
           <Route exact path="/signin" component={SignIn} />
           <Route exact path="/signup" component={SignUp} />
