@@ -3,6 +3,7 @@ import { GET_ITEMS, ADD_ITEM, DELETE_ITEM, UPDATE_ITEM } from "redux/constant";
 
 export const getItems = () => async (dispatch) => {
   try {
+    console.log("getItems");
     const { data } = await axios.get("http://localhost:6969/api/items");
     return dispatch({
       type: GET_ITEMS,

@@ -25,40 +25,48 @@ const App = () => {
   const dispatch = useDispatch();
   const { userReducer } = useSelector((state) => state);
 
-  useEffect(() => {
-    onAuthStateChanged(auth, async (user) => {
-      try {
-        if (user) {
-          const { uid, accessToken } = user;
-          const q = query(collection(db, "users"), where("uid", "==", uid));
-          const querySnapshot = await getDocs(q);
-          const userData = querySnapshot?.docs[0]?.data();
+  useEffect(
+    () =>
+      onAuthStateChanged(auth, async (user) => {
+        try {
+          dispatch(getItems());
+          if (user) {
+            const { uid, accessToken } = user;
+            const q = query(collection(db, "users"), where("uid", "==", uid));
+            const querySnapshot = await getDocs(q);
+            const userData = querySnapshot?.docs[0]?.data();
 
-          if (userData) {
-            const { displayName, email, photoURL } = userData;
+            if (userData) {
+              const { displayName, email, photoURL } = userData;
 
-            setToken(accessToken);
-            dispatch({
-              type: SET_USER,
-              userPayload: { uid, email, displayName, photoURL },
-            });
+              setToken(accessToken);
+              return (
+                dispatch({
+                  type: SET_USER,
+                  userPayload: { uid, email, displayName, photoURL },
+                }),
+                dispatch(getCart(uid)),
+                dispatch(getOrders(uid))
+              );
+            }
           }
-
-          // return dispatch(getItems());
+        } catch (error) {
+          console.error({ error });
         }
-      } catch (error) {
-        console.error({ error });
-      }
-    });
-  }, [dispatch]);
+      }),
+    [dispatch]
+  );
 
-  useEffect(() => {
-    dispatch(getItems());
-    return userReducer
-      ? (dispatch(getCart(userReducer?.uid)),
-        dispatch(getOrders(userReducer?.uid)))
-      : null;
-  }, [userReducer, dispatch]);
+  // useEffect(() => {}, [dispatch]);
+
+  // useEffect(
+  //   () =>
+  //     userReducer
+  //       ? (dispatch(getCart(userReducer?.uid)),
+  //         dispatch(getOrders(userReducer?.uid)))
+  //       : null,
+  //   [userReducer, dispatch]
+  // );
 
   return (
     <ConnectedRouter history={history}>

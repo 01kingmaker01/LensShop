@@ -37,7 +37,7 @@ export const Cart = () => {
     <AnimationRevealPage>
       <Header />
       <div className="lg:w-4/6 mx-auto">
-        {!cartReducer.msg ? (
+        {!cartReducer.msg && !cartReducer.items === [] ? (
           <>
             <h1 className="text-gray-700  text-2xl items-center font-semibold my-4 lg:my-8 flex">
               My Cart <CartIcon className="ml-2 " />
@@ -58,8 +58,9 @@ export const Cart = () => {
                     <button
                       className="w-6 h-6 font-bold bg-gray-300 rounded-full"
                       onClick={() => {
-                        quantity.current.innerHTML =
-                          parseInt(quantity.current.innerHTML) - 1;
+                        if (parseInt(quantity?.current?.innerHTML) < 2) return;
+                        // quantity.current.innerHTML =
+                        //   parseInt(quantity?.current?.innerHTML) - 1;
                         return dispatch(
                           reduceFromCart(userReducer?.uid, e?.productId, 1)
                         );
@@ -74,8 +75,8 @@ export const Cart = () => {
                     <button
                       className="w-6 h-6 font-bold bg-gray-300 rounded-full "
                       onClick={() => {
-                        quantity.current.innerHTML =
-                          parseInt(quantity.current.innerHTML) + 1;
+                        // quantity.current.innerHTML =
+                        //   parseInt(quantity.current.innerHTML) + 1;
                         return dispatch(
                           addToCart(userReducer?.uid, e?.productId, 1)
                         );
