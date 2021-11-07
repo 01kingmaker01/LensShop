@@ -18,7 +18,8 @@ import { getCart } from "redux/actions/cartActions";
 // import { userReducer } from "redux/reducer/user";
 import { Item } from "pages/Item";
 import { Cart } from "pages/Cart";
-import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
+import { getOrders } from "redux/actions/orderActions";
+import { Orders } from "pages/Order";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -43,7 +44,7 @@ const App = () => {
             });
           }
 
-          return dispatch(getItems());
+          // return dispatch(getItems());
         }
       } catch (error) {
         console.error({ error });
@@ -51,25 +52,24 @@ const App = () => {
     });
   }, [dispatch]);
 
-  // useEffect(() => {}, [dispatch]);
-
-  useEffect(
-    () => (userReducer ? dispatch(getCart(userReducer?.uid)) : null),
-    [userReducer, dispatch]
-  );
+  useEffect(() => {
+    dispatch(getItems());
+    return userReducer
+      ? (dispatch(getCart(userReducer?.uid)),
+        dispatch(getOrders(userReducer?.uid)))
+      : null;
+  }, [userReducer, dispatch]);
 
   return (
     <ConnectedRouter history={history}>
       <>
         <Switch>
-          <Route exact path="/">
-            <Redirect to={{ pathname: "home" }} />
-          </Route>
-          <Route exact path="/home" component={Home} />
+          <Route exact path="/" component={Home} />
           <Route exact path="/signin" component={SignIn} />
           <Route exact path="/signup" component={SignUp} />
           <Route exact path="/addItem" component={Item} />
           <Route exact path="/cart" component={Cart} />
+          <Route exact path="/orders" component={Orders} />
         </Switch>
       </>
     </ConnectedRouter>

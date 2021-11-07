@@ -11,6 +11,7 @@ import logo from "assets/svgs/logo.svg";
 import { ReactComponent as MenuIcon } from "assets/svgs/menu.svg";
 import { ReactComponent as CloseIcon } from "assets/svgs/x.svg";
 import { NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Header = tw.header`
 flex justify-between items-center
@@ -65,20 +66,32 @@ export default ({
   className,
   collapseBreakpointClass = "lg",
 }) => {
+  const { userReducer } = useSelector((state) => state);
   const defaultLinks = [
     <NavLinks key={1}>
-      <NavLinkCon>About</NavLinkCon>
-      <NavLinkCon>Blog</NavLinkCon>
-      <NavLinkCon>Pricing</NavLinkCon>
+      <NavLinkCon>
+        <NavLink to="/home">Home</NavLink>
+      </NavLinkCon>
+      <NavLinkCon>
+        <NavLink to="/orders">Orders</NavLink>
+      </NavLinkCon>
       <NavLinkCon>
         <NavLink to="/cart">Cart</NavLink>
       </NavLinkCon>
-      <NavLinkCon tw="lg:ml-12!">
-        <NavLink to="/signin">Login</NavLink>
-      </NavLinkCon>
-      <PrimaryLink css={roundedHeaderButton && tw`rounded-full`}>
-        Sign Up
-      </PrimaryLink>
+      {userReducer ? (
+        <NavLinkCon>
+          <NavLink to="/logout">Logout</NavLink>
+        </NavLinkCon>
+      ) : (
+        <>
+          <NavLinkCon tw="lg:ml-12!">
+            <NavLink to="/signin">Sign In</NavLink>
+          </NavLinkCon>
+          <PrimaryLink css={roundedHeaderButton && tw`rounded-full`}>
+            <NavLink to="/signup">Sign Up</NavLink>
+          </PrimaryLink>
+        </>
+      )}{" "}
     </NavLinks>,
   ];
 

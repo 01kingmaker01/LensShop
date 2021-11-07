@@ -53,8 +53,8 @@ const CardHoverOverlay = styled(motion.div)`
   ${tw`absolute inset-0 flex justify-center items-center`}
 `;
 const base = `px-8 py-3 font-bold rounded bg-primary-500 text-gray-100 hocus:bg-primary-700 hocus:text-gray-200 focus:shadow-outline focus:outline-none transition duration-300`;
-const CardButton = tw.button`text-sm ${base}`;
-const CardHref = tw.a`text-sm ${base}`;
+const CardButton = tw.button` hidden text-sm ${base} group-hover:block`;
+const CardHref = tw.a`hidden text-sm ${base} group-hover:block`;
 
 const CardReview = tw.div`font-medium text-xs text-gray-600`;
 
@@ -99,8 +99,7 @@ export default ({ heading = "Checkout the Menu" }) => {
               <TabControl
                 key={index}
                 active={activeTab === tabName}
-                onClick={() => setActiveTab(tabName)}
-              >
+                onClick={() => setActiveTab(tabName)}>
                 {tabName}
               </TabControl>
             ))}
@@ -124,16 +123,15 @@ export default ({ heading = "Checkout the Menu" }) => {
             }}
             transition={{ duration: 0.4 }}
             initial={activeTab === tabKey ? "current" : "hidden"}
-            animate={activeTab === tabKey ? "current" : "hidden"}
-          >
+            animate={activeTab === tabKey ? "current" : "hidden"}>
             {tabs[tabKey].map((card, index) => (
               <CardContainer key={index}>
                 <Card
                   className="group"
                   initial="rest"
                   whileHover="hover"
-                  animate="rest"
-                >
+                  whileTap="tap"
+                  animate="rest">
                   <CardImageContainer imageSrc={card.image}>
                     <CardRatingContainer>
                       <CardRating>
@@ -142,8 +140,17 @@ export default ({ heading = "Checkout the Menu" }) => {
                       </CardRating>
                       <CardReview>({card.reviews})</CardReview>
                     </CardRatingContainer>
+
                     <CardHoverOverlay
+                      onTap={{
+                        opacity: 1,
+                        height: "auto",
+                      }}
                       variants={{
+                        tap: {
+                          opacity: 1,
+                          height: "auto",
+                        },
                         hover: {
                           opacity: 1,
                           height: "auto",
@@ -153,15 +160,13 @@ export default ({ heading = "Checkout the Menu" }) => {
                           height: 0,
                         },
                       }}
-                      transition={{ duration: 0.3 }}
-                    >
+                      transition={{ duration: 0.3 }}>
                       {userReducer ? (
                         <CardButton
                           onClick={() => {
                             dispatch(addToCart(userReducer.uid, card._id, 1));
                             alert("Added to cart");
-                          }}
-                        >
+                          }}>
                           Add to Cart
                         </CardButton>
                       ) : (
