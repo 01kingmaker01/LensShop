@@ -5,11 +5,10 @@
  */
 
 import axios from "axios";
-// const instance = axios.create({
-//   baseURL: "https://lenshop-backend.herokuapp.com/",
-// });
+const URL = "http://localhost:6969";
+//  ||"https://lenshop-backend.herokuapp.com";
 
-axios.defaults.baseURL = "https://lenshop-backend.herokuapp.com/";
+axios.defaults.baseURL = URL;
 
 const setToken = async (token) => {
   console.warn({ token });

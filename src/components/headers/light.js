@@ -5,7 +5,7 @@ import tw from "twin.macro";
 import styled from "styled-components";
 import { NavLink, useHistory } from "react-router-dom";
 
-import { css } from "styled-components/macro"; //eslint-disable-line
+// import { css } from "styled-components/macro"; //eslint-disable-line
 
 import useAnimatedNavToggler from "assets/helpers/useAnimatedNavToggler.js";
 
@@ -74,9 +74,8 @@ export default ({
   const dispatch = useDispatch();
   const { userReducer } = useSelector((state) => state);
 
-  const signOut = async () => {
-    await auth.signOut().then(() => {
-      console.log("Successfully signed out.");
+  const signOutFun = async () => {
+    await signOut(auth).then(() => {
       dispatch({ type: DEL_USER, userPayload: null });
       dispatch({ type: "RESET_CART", cartPayload: null });
       dispatch({ type: "RESET_ORDERS", orderPayload: null });
@@ -96,7 +95,7 @@ export default ({
         <NavLink to="/cart">Cart</NavLink>
       </NavLinkCon>
       {userReducer ? (
-        <NavLinkCon onClick={() => signOut(auth)}>LogOut </NavLinkCon>
+        <NavLinkCon onClick={signOutFun}>LogOut </NavLinkCon>
       ) : (
         <>
           <NavLinkCon tw="lg:ml-12!">
@@ -106,7 +105,7 @@ export default ({
             <NavLink to="/signup">Sign Up</NavLink>
           </PrimaryLink>
         </>
-      )}{" "}
+      )}
     </NavLinks>,
   ];
 

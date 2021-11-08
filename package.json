@@ -2,7 +2,7 @@
   "name": "client",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://01kingmaker01.github.io/LensShop",
+  "homepage": "https://01kingmaker01.github.io",
   "proxy": "https://lenshop-backend.herokuapp.com/",
   "dependencies": {
     "@craco/craco": "^6.2.0",

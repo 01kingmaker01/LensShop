@@ -5,6 +5,7 @@ import { cartReducer } from "./cart";
 import { itemReducer } from "./item";
 import { orderReducer } from "./order";
 import { userReducer } from "./user";
+import { msgReducer } from "./msg";
 
 export const reducers = (history) =>
   combineReducers({
@@ -13,4 +14,5 @@ export const reducers = (history) =>
     itemReducer,
     orderReducer,
     userReducer,
+    msgReducer,
   });

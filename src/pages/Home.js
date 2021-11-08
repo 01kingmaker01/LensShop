@@ -12,6 +12,7 @@ import TabGrid from "components/TabCardGrid.js";
 import Testimonial from "components/ThreeColumnWithProfileImage.js";
 import Footer from "components/FiveColumnWithInputForm.js";
 import { Loader } from "components/Loader";
+import { useSelector } from "react-redux";
 
 // import chefIconImageSrc from "assets/images/chef-icon.svg";
 // import celebrationIconImageSrc from "assets/images/celebration-icon.svg";
@@ -25,15 +26,11 @@ const imageCss = tw`rounded-4xl`;
 export const Home = () => {
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    setTimeout(() => {
-      setLoading(false);
-    }, 3000);
-  }, []);
-
+  const { msgReducer } = useSelector((state) => state);
+  console.log({ msgReducer });
   return (
     <AnimatePresence>
-      {loading && (
+      {msgReducer && (
         <motion.div
           key={"home_motion.div"}
           className="z-50 bg-white w-screen h-screen fixed "

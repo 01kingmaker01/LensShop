@@ -27,17 +27,14 @@ export const Orders = () => {
       <Header />
 
       <div className="lg:w-4/6 mx-auto">
-        {console.log(orderReducer)}
-        {console.log({ 1: orderReducer === true })}
-        {!orderReducer || orderReducer === [] ? (
-          <div className="flex flex-col items-center my-8  ">
+        {!orderReducer ||
+        JSON.stringify(orderReducer) === JSON.stringify([]) ? (
+          <div className="flex flex-col items-center my-8 text-center  ">
             <h1 className="text-gray-700 text-2xl  font-semibold  ">
-              You've Nothing in Cart
+              You haven't placed any orders yet.
             </h1>
             <p className="text-gray-500 text-sm mt-4 text-center ">
-              Choosing specs is something really tough,
-              <br />
-              we understand it.
+              When you do, their status will appear here.
             </p>
             <EmptyOrderIcon className="max-w-96" />
             <PrimaryLink css={tw`mt-8 mb-4 text-center `}>
@@ -51,7 +48,7 @@ export const Orders = () => {
             </h1>
             {orderReducer?.map((obj, i) => (
               <div key={i}>
-                <span class="text-xs font-semibold inline-block py-1 px-2 rounded-full text-white bg-primary-100 opacity-95 last:mr-0 mr-1 my-4 first:mt-0  ">
+                <span className="text-xs font-semibold inline-block py-1 px-2 rounded-full text-white bg-primary-100 opacity-95 last:mr-0 mr-1 my-4 first:mt-0  ">
                   Items Ordered on {""}
                   <i>
                     <b>{new Date(obj?.date_added)?.toString().substr(0, 25)}</b>

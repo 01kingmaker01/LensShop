@@ -59,7 +59,6 @@ export const Item = () => {
   const onSubmit = async (e) => {
     try {
       await e.preventDefault();
-      console.log({ item });
     } catch (e) {
       console.error(e);
     }
