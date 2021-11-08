@@ -90,7 +90,7 @@ export const SignIn = () => {
           type: SET_USER,
           userPayload: { displayName, email, photoURL, uid },
         });
-        history.push("/home");
+        history.push("/");
       }
     } catch (e) {
       alert(e);
@@ -114,7 +114,7 @@ export const SignIn = () => {
         userPayload: { displayName, email, photoURL, uid },
       });
 
-      history.push("/home");
+      history.push("/");
     } catch (err) {
       console.error(err);
       alert(err.message);

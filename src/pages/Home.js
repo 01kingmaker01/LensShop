@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import tw from "twin.macro";
 import { css } from "styled-components/macro"; //eslint-disable-line
 import { AnimatePresence, motion } from "framer-motion";
@@ -23,16 +23,26 @@ const HighlightedText = tw.span`bg-primary-500 text-gray-100 px-4 transform -ske
 
 const imageCss = tw`rounded-4xl`;
 export const Home = () => {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 3000);
+  }, []);
+
   return (
     <AnimatePresence>
-      {/* <motion.div
-        key={"home_motion.div"}
-        className="z-50 bg-white w-screen h-screen fixed "
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        transition={{ duration: 2 }}>
-        <Loader />
-      </motion.div> */}
+      {loading && (
+        <motion.div
+          key={"home_motion.div"}
+          className="z-50 bg-white w-screen h-screen fixed "
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 1.5 }}>
+          <Loader />
+        </motion.div>
+      )}
       <AnimationRevealPage>
         <Hero />
         <MainFeature />

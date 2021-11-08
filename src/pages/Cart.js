@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
-import tw, { css } from "twin.macro";
+import tw from "twin.macro";
 
 // import StripeCheckout from "react-stripe-checkout";
 
@@ -37,7 +37,22 @@ export const Cart = () => {
     <AnimationRevealPage>
       <Header />
       <div className="lg:w-4/6 mx-auto">
-        {!cartReducer.msg && !cartReducer.items === [] ? (
+        {!cartReducer || cartReducer.items === [] ? (
+          <div className="flex flex-col items-center my-8  ">
+            <h1 className="text-gray-700 text-2xl  font-semibold  ">
+              You've Nothing in Cart
+            </h1>
+            <p className="text-gray-500 text-sm mt-4 mb-8 text-center ">
+              Choosing specs is something really tough,
+              <br />
+              we understand it.
+            </p>
+            <EmptyCartIcon />
+            <PrimaryLink css={tw`mt-8 mb-4`}>
+              <NavLink to="/">LETS FILL THE CART</NavLink>
+            </PrimaryLink>
+          </div>
+        ) : (
           <>
             <h1 className="text-gray-700  text-2xl items-center font-semibold my-4 lg:my-8 flex">
               My Cart <CartIcon className="ml-2 " />
@@ -94,21 +109,6 @@ export const Cart = () => {
               Checkout
             </button>
           </>
-        ) : (
-          <div className="flex flex-col items-center my-8  ">
-            <h1 className="text-gray-700 text-2xl  font-semibold  ">
-              You've Nothing in Cart
-            </h1>
-            <p className="text-gray-500 text-sm mt-4 mb-8 text-center ">
-              Choosing specs is something really tough,
-              <br />
-              we understand it.
-            </p>
-            <EmptyCartIcon />
-            <PrimaryLink css={tw`mt-8 mb-4`}>
-              <NavLink to="/#cards">LETS FILL THE CART</NavLink>
-            </PrimaryLink>
-          </div>
         )}
       </div>
 

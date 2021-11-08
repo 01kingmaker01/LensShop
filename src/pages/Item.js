@@ -69,7 +69,7 @@ export const Item = () => {
       <Container>
         <Content>
           <MainContainer>
-            <LogoLink href="/home">
+            <LogoLink href="/">
               <LogoImage src={logo} />
             </LogoLink>
             <MainContent>

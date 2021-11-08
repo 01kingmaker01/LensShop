@@ -111,7 +111,7 @@ export const SignUp = ({
         type: SET_USER,
         userPayload: { displayName, email, photoURL, uid: userData.uid },
       });
-      history.push("/home");
+      history.push("/");
     } catch (err) {
       console.error(err);
       alert(err.message);
@@ -145,7 +145,7 @@ export const SignUp = ({
           type: SET_USER,
           userPayload: { displayName, email, photoURL, uid },
         });
-        history.push("/home");
+        history.push("/");
       }
     } catch (e) {
       alert(e);
@@ -158,7 +158,7 @@ export const SignUp = ({
       <Container>
         <Content>
           <MainContainer>
-            <LogoLink href="/home">
+            <LogoLink href="/">
               <LogoImage src={logo} />
             </LogoLink>
             <MainContent>

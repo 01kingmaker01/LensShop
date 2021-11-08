@@ -3,6 +3,8 @@ import React from "react";
 import { motion } from "framer-motion";
 import tw from "twin.macro";
 import styled from "styled-components";
+import { NavLink, useHistory } from "react-router-dom";
+
 import { css } from "styled-components/macro"; //eslint-disable-line
 
 import useAnimatedNavToggler from "assets/helpers/useAnimatedNavToggler.js";
@@ -10,8 +12,10 @@ import useAnimatedNavToggler from "assets/helpers/useAnimatedNavToggler.js";
 import logo from "assets/svgs/logo.svg";
 import { ReactComponent as MenuIcon } from "assets/svgs/menu.svg";
 import { ReactComponent as CloseIcon } from "assets/svgs/x.svg";
-import { NavLink } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { signOut } from "@firebase/auth";
+import { auth } from "firebase";
+import { DEL_USER } from "redux/constant";
 
 const Header = tw.header`
 flex justify-between items-center
@@ -26,7 +30,7 @@ export const NavLinks = tw.div`inline-block`;
 export const NavLinkCon = tw.span`
 text-lg my-2 lg:text-sm lg:mx-6 lg:my-0
 font-semibold tracking-wide transition duration-300
-pb-1 border-b-2 border-transparent hover:border-primary-500 hocus:text-primary-500
+pb-1 border-b-2 border-transparent hover:border-primary-500 hocus:text-primary-500 hover:cursor-pointer
 `;
 
 export const PrimaryLink = tw(NavLinkCon)`
@@ -66,11 +70,24 @@ export default ({
   className,
   collapseBreakpointClass = "lg",
 }) => {
+  const history = useHistory();
+  const dispatch = useDispatch();
   const { userReducer } = useSelector((state) => state);
+
+  const signOut = async () => {
+    await auth.signOut().then(() => {
+      console.log("Successfully signed out.");
+      dispatch({ type: DEL_USER, userPayload: null });
+      dispatch({ type: "RESET_CART", cartPayload: null });
+      dispatch({ type: "RESET_ORDERS", orderPayload: null });
+      history.push("/");
+    });
+  };
+
   const defaultLinks = [
     <NavLinks key={1}>
       <NavLinkCon>
-        <NavLink to="/home">Home</NavLink>
+        <NavLink to="/">Home</NavLink>
       </NavLinkCon>
       <NavLinkCon>
         <NavLink to="/orders">Orders</NavLink>
@@ -79,9 +96,7 @@ export default ({
         <NavLink to="/cart">Cart</NavLink>
       </NavLinkCon>
       {userReducer ? (
-        <NavLinkCon>
-          <NavLink to="/logout">Logout</NavLink>
-        </NavLinkCon>
+        <NavLinkCon onClick={() => signOut(auth)}>LogOut </NavLinkCon>
       ) : (
         <>
           <NavLinkCon tw="lg:ml-12!">

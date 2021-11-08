@@ -8,6 +8,8 @@ export const orderReducer = (state = [], { type, payload }) => {
     case CHECKOUT:
       return [...state, payload];
 
+    case "RESET_ORDERS":
+      return payload;
     default:
       return state;
   }

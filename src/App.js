@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { ConnectedRouter } from "connected-react-router";
 import { Route, Switch } from "react-router";
 import { Home } from "pages/Home";
@@ -23,7 +23,6 @@ import { Orders } from "pages/Order";
 
 const App = () => {
   const dispatch = useDispatch();
-  const { userReducer } = useSelector((state) => state);
 
   useEffect(
     () =>
