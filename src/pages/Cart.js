@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
-import tw, { css } from "twin.macro";
+import tw from "twin.macro";
 
 // import StripeCheckout from "react-stripe-checkout";
 

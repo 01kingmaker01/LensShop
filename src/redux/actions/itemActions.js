@@ -1,8 +1,9 @@
 import axios from "axios";
 import { GET_ITEMS, ADD_ITEM, DELETE_ITEM, UPDATE_ITEM } from "redux/constant";
 
-const URL = "http://localhost:6969/api/items";
-// || "https://lenshop-backend.herokuapp.com/api/items";
+const URL =
+  "http://localhost:6969/api/items" ||
+  "https://lenshop-backend.herokuapp.com/api/items";
 
 export const getItems = () => async (dispatch) => {
   try {

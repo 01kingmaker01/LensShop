@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import tw from "twin.macro";
 import { css } from "styled-components/macro"; //eslint-disable-line
 import { AnimatePresence, motion } from "framer-motion";
@@ -24,8 +24,6 @@ const HighlightedText = tw.span`bg-primary-500 text-gray-100 px-4 transform -ske
 
 const imageCss = tw`rounded-4xl`;
 export const Home = () => {
-  const [loading, setLoading] = useState(true);
-
   const { msgReducer } = useSelector((state) => state);
   console.log({ msgReducer });
   return (

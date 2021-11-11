@@ -62,17 +62,6 @@ const App = () => {
     }
   }, [dispatch]);
 
-  // useEffect(() => {}, [dispatch]);
-
-  // useEffect(
-  //   () =>
-  //     userReducer
-  //       ? (dispatch(getCart(userReducer?.uid)),
-  //         dispatch(getOrders(userReducer?.uid)))
-  //       : null,
-  //   [userReducer, dispatch]
-  // );
-
   return (
     <ConnectedRouter history={history}>
       <>

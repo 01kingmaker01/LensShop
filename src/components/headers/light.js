@@ -77,8 +77,8 @@ export default ({
   const signOutFun = async () => {
     await signOut(auth).then(() => {
       dispatch({ type: DEL_USER, userPayload: null });
-      dispatch({ type: "RESET_CART", cartPayload: null });
-      dispatch({ type: "RESET_ORDERS", orderPayload: null });
+      dispatch({ type: "RESET_CART", payload: null });
+      dispatch({ type: "RESET_ORDERS", payload: null });
       history.push("/");
     });
   };
@@ -92,8 +92,13 @@ export default ({
         <NavLink to="/orders">Orders</NavLink>
       </NavLinkCon>
       <NavLinkCon>
-        <NavLink to="/cart">Cart</NavLink>
+        {userReducer?.email === "admin@admin.com" ? (
+          <NavLink to="/addItem">Add Item</NavLink>
+        ) : (
+          <NavLink to="/cart">Cart</NavLink>
+        )}
       </NavLinkCon>
+
       {userReducer ? (
         <NavLinkCon onClick={signOutFun}>LogOut </NavLinkCon>
       ) : (

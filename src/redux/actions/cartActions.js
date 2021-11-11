@@ -1,8 +1,9 @@
 import axios from "axios";
 import { GET_CART, ADD_TO_CART, DELETE_FROM_CART } from "redux/constant";
 
-const URL = "http://localhost:6969/api/cart";
-// || "https://lenshop-backend.herokuapp.com/api/cart";
+const URL =
+  "http://localhost:6969/api/cart" ||
+  "https://lenshop-backend.herokuapp.com/api/cart";
 
 export const getCart = (id) => async (dispatch) => {
   const { data } = await axios.get(`${URL}/${id}`);

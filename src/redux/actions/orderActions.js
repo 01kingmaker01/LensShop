@@ -2,7 +2,8 @@
 import axios from "axios";
 import { GET_ORDERS, CHECKOUT } from "redux/constant";
 
-const URL = "http://localhost:6969/api"; // || "https://lenshop-backend.herokuapp.com/api";
+const URL =
+  "http://localhost:6969/api" || "https://lenshop-backend.herokuapp.com/api";
 
 export const getOrders = (id) => async (dispatch) => {
   const { data } = await axios.get(`${URL}/order/${id}`);
