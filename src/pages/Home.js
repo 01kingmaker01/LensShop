@@ -25,7 +25,6 @@ const HighlightedText = tw.span`bg-primary-500 text-gray-100 px-4 transform -ske
 const imageCss = tw`rounded-4xl`;
 export const Home = () => {
   const { msgReducer } = useSelector((state) => state);
-  console.log({ msgReducer });
   return (
     <AnimatePresence>
       {msgReducer && (
@@ -33,8 +32,8 @@ export const Home = () => {
           key={"home_motion.div"}
           className="z-50 bg-white w-screen h-screen fixed "
           animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 1.5 }}>
+          exit={{ opacity: 1 }}
+          transition={{ duration: 3 }}>
           <Loader />
         </motion.div>
       )}

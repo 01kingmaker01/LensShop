@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "homepage": "https://01kingmaker01.github.io",
-  "proxy": "https://lenshop-backend.herokuapp.com/",
+  "proxy": "https://lensshop.herokuapp.com",
   "dependencies": {
     "@craco/craco": "^6.2.0",
     "autoprefixer": "^9.8.6",

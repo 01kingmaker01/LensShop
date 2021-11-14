@@ -6,7 +6,7 @@ import tw from "twin.macro";
 import styled from "styled-components";
 import { collection, query, where, addDoc, getDocs } from "firebase/firestore";
 import { useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 
 import illustration from "assets/svgs/login-illustration.svg";
 import logo from "assets/svgs/logo.svg";
@@ -16,14 +16,12 @@ import { ReactComponent as LoginIcon } from "assets/svgs/log-in.svg";
 import { signInWithEmailAndPassword, signInWithPopup } from "@firebase/auth";
 import { auth, db, googleProvider } from "firebase";
 import { SET_USER } from "redux/constant";
-import { throttle } from "lodash";
 
 const Container = tw(
   ContainerBase
 )`min-h-screen bg-primary-900 text-white font-medium flex justify-center -m-8`;
 const Content = tw.div`max-w-screen-xl m-0 sm:mx-20 sm:my-16 bg-white text-gray-900 shadow sm:rounded-lg flex justify-center flex-1`;
 const MainContainer = tw.div`lg:w-1/2 xl:w-5/12 p-6 sm:p-12`;
-const LogoLink = tw.a``;
 const LogoImage = tw.img`h-12 mx-auto`;
 const MainContent = tw.div`mt-12 flex flex-col items-center`;
 const Heading = tw.h1`text-2xl xl:text-3xl font-extrabold`;
@@ -139,9 +137,9 @@ export const SignIn = () => {
       <Container>
         <Content>
           <MainContainer>
-            <LogoLink href={`##`}>
+            <NavLink to="/">
               <LogoImage src={logo} />
-            </LogoLink>
+            </NavLink>
             <MainContent>
               <Heading>Sign In To LenShop</Heading>
               <FormContainer>
@@ -192,9 +190,9 @@ export const SignIn = () => {
                 </p>
                 <p tw="mt-8 text-sm text-gray-600 text-center">
                   Dont have an account?
-                  <a href={`##`} tw="border-b border-gray-500 border-dotted">
-                    Sign Up
-                  </a>
+                  <span tw="border-b border-gray-500 border-dotted">
+                    <NavLink to="/signup"> Sign Up</NavLink>
+                  </span>
                 </p>
               </FormContainer>
             </MainContent>

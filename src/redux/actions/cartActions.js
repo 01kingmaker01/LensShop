@@ -2,11 +2,12 @@ import axios from "axios";
 import { GET_CART, ADD_TO_CART, DELETE_FROM_CART } from "redux/constant";
 
 const URL =
-  "http://localhost:6969/api/cart" ||
-  "https://lenshop-backend.herokuapp.com/api/cart";
+  process.env.NODE_ENV === "development"
+    ? process.env.REACT_APP_URL
+    : "https://lensshop.herokuapp.com/api";
 
 export const getCart = (id) => async (dispatch) => {
-  const { data } = await axios.get(`${URL}/${id}`);
+  const { data } = await axios.get(`${URL}/cart/${id}`);
   return dispatch({
     type: GET_CART,
     payload: data,
@@ -14,7 +15,7 @@ export const getCart = (id) => async (dispatch) => {
 };
 
 export const addToCart = (id, productId, quantity) => async (dispatch) => {
-  const { data } = await axios.post(`${URL}/${id}`, {
+  const { data } = await axios.post(`${URL}/cart/${id}`, {
     productId,
     quantity,
   });
@@ -25,7 +26,7 @@ export const addToCart = (id, productId, quantity) => async (dispatch) => {
 };
 
 export const deleteFromCart = (userId, productId) => async (dispatch) => {
-  const { data } = await axios.delete(`${URL}/${userId}/${productId}`);
+  const { data } = await axios.delete(`${URL}/cart/${userId}/${productId}`);
   return dispatch({
     type: DELETE_FROM_CART,
     payload: data,
@@ -34,7 +35,7 @@ export const deleteFromCart = (userId, productId) => async (dispatch) => {
 
 export const reduceFromCart =
   (userId, productId, quantity) => async (dispatch) => {
-    const { data } = await axios.patch(`${URL}/${userId}`, {
+    const { data } = await axios.patch(`${URL}/cart/${userId}`, {
       productId,
       quantity,
     });

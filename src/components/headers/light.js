@@ -119,10 +119,12 @@ export default ({
     collapseBreakPointCssMap[collapseBreakpointClass];
 
   const defaultLogoLink = (
-    <LogoLink href="/">
-      <img src={logo} alt="logo" />
-      LensShop
-    </LogoLink>
+    <NavLink to="/">
+      <LogoLink>
+        <img src={logo} alt="logo" />
+        LensShop
+      </LogoLink>
+    </NavLink>
   );
 
   logoLink = logoLink || defaultLogoLink;

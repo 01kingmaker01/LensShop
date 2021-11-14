@@ -26,6 +26,7 @@ const App = () => {
 
   useEffect(() => {
     try {
+      console.log(process.env.NODE_ENV, process.env.REACT_APP_URL);
       return (
         dispatch({ type: LOADING, msgPayload: true }),
         dispatch(getItems()),

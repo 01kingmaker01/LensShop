@@ -5,7 +5,7 @@
  */
 
 import axios from "axios";
-const URL = "http://localhost:6969" || "https://lenshop-backend.herokuapp.com";
+const URL = "https://lensshop.herokuapp.com";
 
 axios.defaults.baseURL = URL;
 

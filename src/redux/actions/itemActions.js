@@ -2,12 +2,13 @@ import axios from "axios";
 import { GET_ITEMS, ADD_ITEM, DELETE_ITEM, UPDATE_ITEM } from "redux/constant";
 
 const URL =
-  "http://localhost:6969/api/items" ||
-  "https://lenshop-backend.herokuapp.com/api/items";
+  process.env.NODE_ENV === "development"
+    ? process.env.REACT_APP_URL
+    : "https://lensshop.herokuapp.com/api";
 
 export const getItems = () => async (dispatch) => {
   try {
-    const { data } = await axios.get(`${URL}`);
+    const { data } = await axios.get(`${URL}/items`);
     return dispatch({
       type: GET_ITEMS,
       itemPayload: [...data],
@@ -19,7 +20,7 @@ export const getItems = () => async (dispatch) => {
 
 export const addItem = async (item) => async (dispatch) => {
   try {
-    const { data } = await axios.post(`${URL}`, item);
+    const { data } = await axios.post(`${URL}/items`, item);
 
     dispatch({
       type: ADD_ITEM,
@@ -32,7 +33,7 @@ export const addItem = async (item) => async (dispatch) => {
 
 export const updateItem = async (id, item) => async (dispatch) => {
   try {
-    const { data } = await axios.put(`${URL}/${id}`, item);
+    const { data } = await axios.put(`${URL}/items/${id}`, item);
 
     dispatch({
       type: UPDATE_ITEM,
@@ -44,7 +45,7 @@ export const updateItem = async (id, item) => async (dispatch) => {
 };
 
 export const deleteItem = async (id) => async (dispatch) => {
-  await axios.delete(`${URL}/${id}`);
+  await axios.delete(`${URL}/items/${id}`);
 
   dispatch({
     type: DELETE_ITEM,

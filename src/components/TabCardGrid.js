@@ -10,6 +10,7 @@ import { ReactComponent as StarIcon } from "assets/svgs/star-icon.svg";
 import { ReactComponent as SvgDecoratorBlob1 } from "assets/svgs/svg-decorator-blob-5.svg";
 import { ReactComponent as SvgDecoratorBlob2 } from "assets/svgs/svg-decorator-blob-7.svg";
 import { addToCart } from "redux/actions/cartActions";
+import { NavLink } from "react-router-dom";
 
 const HeaderRow = tw.div`flex justify-between items-center flex-col xl:flex-row`;
 const Header = tw(SectionHeading)``;
@@ -54,7 +55,7 @@ const CardHoverOverlay = styled(motion.div)`
 `;
 const base = `px-8 py-3 font-bold rounded bg-primary-500 text-gray-100 hocus:bg-primary-700 hocus:text-gray-200 focus:shadow-outline focus:outline-none transition duration-300`;
 const CardButton = tw.button` hidden text-sm ${base} group-hover:block`;
-const CardHref = tw.a`hidden text-sm ${base} group-hover:block`;
+const CardHref = tw.span`hidden text-sm ${base} group-hover:block`;
 
 const CardReview = tw.div`font-medium text-xs text-gray-600`;
 
@@ -170,7 +171,9 @@ export default ({ heading = "Checkout the Menu" }) => {
                           Add to Cart
                         </CardButton>
                       ) : (
-                        <CardHref href="/signin"> Login</CardHref>
+                        <CardHref>
+                          <NavLink to="/signin">Login</NavLink>
+                        </CardHref>
                       )}
                     </CardHoverOverlay>
                   </CardImageContainer>

@@ -1,9 +1,10 @@
 /* eslint-disable no-unused-vars */
 import axios from "axios";
 import { GET_ORDERS, CHECKOUT } from "redux/constant";
-
 const URL =
-  "http://localhost:6969/api" || "https://lenshop-backend.herokuapp.com/api";
+  process.env.NODE_ENV === "development"
+    ? process.env.REACT_APP_URL
+    : "https://lensshop.herokuapp.com/api";
 
 export const getOrders = (id) => async (dispatch) => {
   const { data } = await axios.get(`${URL}/order/${id}`);
